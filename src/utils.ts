@@ -15,7 +15,7 @@ export function asset(p: string): string {
 }
 
 export function pageUrl(lang: Lang): string {
-  return lang === 'th' ? `${base}/` : `${base}/en/`;
+  return lang === 'en' ? `${base}/` : `${base}/th/`;
 }
 
 export function initials(name: string): string {

@@ -1,6 +1,6 @@
 # เว็บ Resume + Portfolio
 
-สร้างด้วย [Astro](https://astro.build) + [Tailwind CSS](https://tailwindcss.com) มีหน้าไทย (`/`) และอังกฤษ (`/en/`)
+สร้างด้วย [Astro](https://astro.build) + [Tailwind CSS](https://tailwindcss.com) มีหน้าอังกฤษ (`/` ค่าเริ่มต้น) และไทย (`/th/`)
 
 ## แก้ไขข้อมูล
 ข้อมูลทั้งหมดอยู่ใน 2 ไฟล์ — แก้แล้วเว็บเปลี่ยนตามทันที

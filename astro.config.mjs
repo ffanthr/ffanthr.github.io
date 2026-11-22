@@ -8,6 +8,8 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   site: 'https://ffanthr.github.io',
   base: '/',
+  // link เก่า /en/ ให้พากลับมาหน้าแรก (ภาษาอังกฤษ)
+  redirects: { '/en': '/' },
   vite: {
     plugins: [tailwindcss()],
   },
