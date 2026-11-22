@@ -1,0 +1,23 @@
+{
+  "name": "resume-portfolio",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "5.18.2",
+    "@tailwindcss/vite": "4.3.5",
+    "tailwindcss": "4.3.5"
+  },
+  "engines": {
+    "node": ">=20.3.0"
+  },
+  "overrides": {
+    "vite": "6.4.6"
+  }
+}

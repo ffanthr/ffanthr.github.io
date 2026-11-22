@@ -1,0 +1,94 @@
+{
+  "ui": {
+    "nav": {
+      "about": "About",
+      "experience": "Experience",
+      "education": "Education",
+      "skills": "Skills",
+      "projects": "Projects",
+      "certificates": "Certificates",
+      "contact": "Contact"
+    },
+    "downloadResume": "Download Resume",
+    "contactMe": "Contact me",
+    "present": "Present",
+    "viewCode": "Code",
+    "viewDemo": "Live demo",
+    "contactIntro": "Interested in working together or have a question? Reach me through any of the channels below.",
+    "langSwitch": "TH",
+    "footer": "Built with Astro + Tailwind CSS"
+  },
+  "profile": {
+    "name": "Firstname Lastname",
+    "title": "Position you are applying for",
+    "summary": "A short 1–2 sentence summary, e.g. a developer who loves building easy-to-use websites and is eager to learn new technologies.",
+    "photo": "",
+    "resumePdf": "",
+    "location": "Bangkok, Thailand"
+  },
+  "about": [
+    "Intro paragraph: who you are, what you are good at, and what kind of role you are looking for.",
+    "Second paragraph (optional): strengths, interests, or career goals."
+  ],
+  "experience": [
+    {
+      "role": "Job title",
+      "company": "Company name",
+      "start": "2024",
+      "end": "",
+      "points": [
+        "What you did / measurable result, e.g. reduced page load time by 40%",
+        "Other responsibilities"
+      ]
+    },
+    {
+      "role": "Intern",
+      "company": "Company name",
+      "start": "2023",
+      "end": "2023",
+      "points": ["What you worked on during the internship"]
+    }
+  ],
+  "education": [
+    {
+      "degree": "Bachelor of ...",
+      "school": "University name",
+      "start": "2020",
+      "end": "2024",
+      "detail": "GPA 3.xx"
+    }
+  ],
+  "skills": [
+    { "group": "Languages", "items": ["JavaScript", "TypeScript", "Python"] },
+    { "group": "Tools / Frameworks", "items": ["React", "Astro", "Git", "Figma"] },
+    { "group": "Other skills", "items": ["Teamwork", "Communication", "Thai (native)"] }
+  ],
+  "projects": [
+    {
+      "name": "Project name 1",
+      "description": "Briefly describe what the project does, what problem it solves, and your part in it.",
+      "tech": ["Astro", "Tailwind"],
+      "image": "",
+      "code": "https://github.com/",
+      "demo": ""
+    },
+    {
+      "name": "Project name 2",
+      "description": "Briefly describe what the project does.",
+      "tech": ["Python"],
+      "image": "",
+      "code": "",
+      "demo": ""
+    }
+  ],
+  "certificates": [
+    { "name": "Certificate name", "issuer": "Issuer", "year": "2024" }
+  ],
+  "contact": {
+    "email": "you@example.com",
+    "phone": "",
+    "linkedin": "https://www.linkedin.com/in/",
+    "github": "https://github.com/",
+    "website": ""
+  }
+}
