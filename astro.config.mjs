@@ -6,7 +6,7 @@ import tailwindcss from '@tailwindcss/vite';
 // ถ้าตั้งชื่อ repo เป็น "<username>.github.io" ให้ base เป็น '/'
 // ถ้าใช้ชื่อ repo อื่น เช่น "resume" ให้ base เป็น '/resume'
 export default defineConfig({
-  site: 'https://USERNAME.github.io',
+  site: 'https://ffanthr.github.io',
   base: '/',
   vite: {
     plugins: [tailwindcss()],
