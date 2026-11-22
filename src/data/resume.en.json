@@ -14,81 +14,117 @@
     "present": "Present",
     "viewCode": "Code",
     "viewDemo": "Live demo",
-    "contactIntro": "Interested in working together or have a question? Reach me through any of the channels below.",
+    "contactIntro": "Interested in working together or have a question? Feel free to reach out.",
     "langSwitch": "TH",
     "footer": "Built with Astro + Tailwind CSS"
   },
   "profile": {
-    "name": "Firstname Lastname",
-    "title": "Position you are applying for",
-    "summary": "A short 1–2 sentence summary, e.g. a developer who loves building easy-to-use websites and is eager to learn new technologies.",
+    "name": "Nitharee Punyachayan",
+    "title": "Business Analyst | System Analysis",
+    "summary": "Computer Engineering graduate with experience in application development, system documentation, and testing — interested in Business Analyst and System Analyst roles.",
     "photo": "",
-    "resumePdf": "",
-    "location": "Bangkok, Thailand"
+    "resumePdf": "resume.pdf",
+    "location": "Samut Prakan, Thailand"
   },
   "about": [
-    "Intro paragraph: who you are, what you are good at, and what kind of role you are looking for.",
-    "Second paragraph (optional): strengths, interests, or career goals."
+    "Computer Engineering graduate with experience in application development and system testing. I have worked with System Analysts and team members to develop business applications, and I have experience preparing system documents, UAT documents, and test cases.",
+    "I work with SQL Server, C#, ASP.NET Core, and APIs, including integration with SAP APIs, and I can investigate and fix application problems by myself. I am interested in Business Analyst and System Analyst roles."
   ],
   "experience": [
     {
-      "role": "Job title",
-      "company": "Company name",
-      "start": "2024",
+      "role": "Programmer",
+      "company": "Bangkok Air Catering",
+      "start": "Mar 2026",
       "end": "",
       "points": [
-        "What you did / measurable result, e.g. reduced page load time by 40%",
-        "Other responsibilities"
+        "Develop and maintain web applications using C# and ASP.NET Core.",
+        "Work with System Analysts and team leaders to understand system requirements.",
+        "Use SQL Server every day to query and check data.",
+        "Prepare Functional Specifications, UAT documents, Business Simulation (BizSim), and Test Cases.",
+        "Test applications to make sure they work correctly, and investigate and fix application problems.",
+        "Develop APIs and connect applications with SAP APIs.",
+        "Support application problems after Go-Live."
       ]
     },
     {
-      "role": "Intern",
-      "company": "Company name",
-      "start": "2023",
-      "end": "2023",
-      "points": ["What you worked on during the internship"]
+      "role": "QC Office",
+      "company": "Taiwan Metal (Thailand)",
+      "start": "Jan 2026",
+      "end": "Mar 2026",
+      "points": [
+        "Check quality documents and update related information.",
+        "Support daily QC office tasks.",
+        "Work with team members on daily operations."
+      ]
+    },
+    {
+      "role": "Full Stack Programmer Intern",
+      "company": "IDC Premier Publishing",
+      "start": "Nov 2024",
+      "end": "Mar 2025",
+      "points": [
+        "Worked with other interns to develop an internal task management system.",
+        "Helped collect requirements, design screens, and develop the application.",
+        "Used PHP (Yii2 Framework) and MySQL.",
+        "Used Figma for screen design."
+      ]
     }
   ],
   "education": [
     {
-      "degree": "Bachelor of ...",
-      "school": "University name",
-      "start": "2020",
-      "end": "2024",
-      "detail": "GPA 3.xx"
+      "degree": "Bachelor of Engineering in Computer Engineering",
+      "school": "Kasetsart University, Sriracha Campus",
+      "start": "",
+      "end": "2025",
+      "detail": ""
     }
   ],
   "skills": [
-    { "group": "Languages", "items": ["JavaScript", "TypeScript", "Python"] },
-    { "group": "Tools / Frameworks", "items": ["React", "Astro", "Git", "Figma"] },
-    { "group": "Other skills", "items": ["Teamwork", "Communication", "Thai (native)"] }
+    { "group": "System Analysis & Testing", "items": ["Functional Specification", "System Documentation", "UAT Documentation", "Business Simulation (BizSim)", "Test Case", "System Testing", "Requirement Review & Coordination", "Application Issue Investigation"] },
+    { "group": "Programming", "items": ["C#", "ASP.NET Core", ".NET", "PHP (Yii2)", "Python", "JavaScript"] },
+    { "group": "Database", "items": ["Microsoft SQL Server", "MySQL", "SQL Query", "Stored Procedures"] },
+    { "group": "Integration & Tools", "items": ["API Development", "SAP API Integration", "Active Directory Authentication", "SSMS", "Visual Studio", "VS Code", "Figma", "GitLab"] }
   ],
   "projects": [
     {
-      "name": "Project name 1",
-      "description": "Briefly describe what the project does, what problem it solves, and your part in it.",
-      "tech": ["Astro", "Tailwind"],
+      "name": "Smart Nutri – Food Ordering System",
+      "description": "Main Developer at Bangkok Air Catering. Built the application with C# and ASP.NET Core, connected it to SAP APIs to receive food order data and send food completion information back to SAP, then tested it and fixed problems after Go-Live.",
+      "tech": ["C#", "ASP.NET Core", "SAP API", "SQL Server"],
       "image": "",
-      "code": "https://github.com/",
+      "code": "",
       "demo": ""
     },
     {
-      "name": "Project name 2",
-      "description": "Briefly describe what the project does.",
-      "tech": ["Python"],
+      "name": "Data Reconciliation – Web Application",
+      "description": "Developer at Bangkok Air Catering. A web application for data checking and reconciliation, covering application development and data handling.",
+      "tech": ["C#", "ASP.NET Core", "SQL Server"],
+      "image": "",
+      "code": "",
+      "demo": ""
+    },
+    {
+      "name": "UMD365BC Management – Internal Web Application",
+      "description": "Developer at Bangkok Air Catering. An internal web application that lets employees access shared account information for their departments, with Active Directory login.",
+      "tech": ["C#", "ASP.NET Core", "Active Directory"],
+      "image": "",
+      "code": "",
+      "demo": ""
+    },
+    {
+      "name": "Task Management System",
+      "description": "Full Stack Programmer Intern at IDC Premier Publishing. Worked with other interns to collect requirements, design screens in Figma, and develop an internal task management system.",
+      "tech": ["PHP", "Yii2", "MySQL", "Figma"],
       "image": "",
       "code": "",
       "demo": ""
     }
   ],
-  "certificates": [
-    { "name": "Certificate name", "issuer": "Issuer", "year": "2024" }
-  ],
+  "certificates": [],
   "contact": {
-    "email": "you@example.com",
+    "email": "nitharee.pu@gmail.com",
     "phone": "",
-    "linkedin": "https://www.linkedin.com/in/",
-    "github": "https://github.com/",
+    "linkedin": "",
+    "github": "",
     "website": ""
   }
 }

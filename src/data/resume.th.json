@@ -14,81 +14,117 @@
     "present": "ปัจจุบัน",
     "viewCode": "ดูโค้ด",
     "viewDemo": "ดูตัวอย่าง",
-    "contactIntro": "สนใจร่วมงานหรือมีคำถาม ติดต่อได้ทุกช่องทางด้านล่างนี้",
+    "contactIntro": "สนใจร่วมงานหรือมีคำถาม ติดต่อได้ตามช่องทางด้านล่างนี้",
     "langSwitch": "EN",
     "footer": "สร้างด้วย Astro + Tailwind CSS"
   },
   "profile": {
-    "name": "ชื่อ นามสกุล",
-    "title": "ตำแหน่งงานที่สมัคร",
-    "summary": "สรุปตัวเองสั้น ๆ 1–2 ประโยค เช่น นักพัฒนาที่ชอบสร้างเว็บที่ใช้งานง่าย และพร้อมเรียนรู้เทคโนโลยีใหม่",
+    "name": "Nitharee Punyachayan",
+    "title": "Business Analyst | System Analysis",
+    "summary": "วิศวกรคอมพิวเตอร์ที่มีประสบการณ์ด้านการพัฒนาแอปพลิเคชัน การจัดทำเอกสารระบบ และการทดสอบระบบ สนใจงานตำแหน่ง Business Analyst และ System Analyst",
     "photo": "",
-    "resumePdf": "",
-    "location": "กรุงเทพมหานคร"
+    "resumePdf": "resume.pdf",
+    "location": "สมุทรปราการ"
   },
   "about": [
-    "ย่อหน้าแนะนำตัว: เล่าว่าคุณเป็นใคร ทำอะไรได้ดี และกำลังมองหางานแบบไหน",
-    "ย่อหน้าที่สอง (ถ้ามี): จุดเด่น ความสนใจ หรือเป้าหมายในสายงาน"
+    "จบการศึกษาวิศวกรรมคอมพิวเตอร์ มีประสบการณ์ด้านการพัฒนาแอปพลิเคชันและการทดสอบระบบ ทำงานร่วมกับ System Analyst และทีมในการพัฒนาแอปพลิเคชันสำหรับธุรกิจ มีประสบการณ์จัดทำเอกสารระบบ เอกสาร UAT และ Test Case",
+    "ใช้งาน SQL Server, C#, ASP.NET Core และ API รวมถึงการเชื่อมต่อกับ SAP API สามารถตรวจสอบและแก้ไขปัญหาของแอปพลิเคชันได้ด้วยตนเอง สนใจงานตำแหน่ง Business Analyst และ System Analyst"
   ],
   "experience": [
     {
-      "role": "ตำแหน่ง",
-      "company": "ชื่อบริษัท",
-      "start": "2024",
+      "role": "Programmer",
+      "company": "Bangkok Air Catering",
+      "start": "มี.ค. 2026",
       "end": "",
       "points": [
-        "สิ่งที่ทำ / ผลลัพธ์ที่วัดได้ เช่น ลดเวลาโหลดหน้าเว็บลง 40%",
-        "งานหรือความรับผิดชอบอื่น ๆ"
+        "พัฒนาและดูแลเว็บแอปพลิเคชันด้วย C# และ ASP.NET Core",
+        "ทำงานร่วมกับ System Analyst และหัวหน้าทีมเพื่อทำความเข้าใจความต้องการของระบบ",
+        "ใช้ SQL Server ทุกวันในการ query และตรวจสอบข้อมูล",
+        "จัดทำ Functional Specification, เอกสาร UAT, Business Simulation (BizSim) และ Test Case",
+        "ทดสอบแอปพลิเคชันให้ทำงานถูกต้อง รวมถึงตรวจสอบและแก้ไขปัญหาด้วยตนเอง",
+        "พัฒนา API และเชื่อมต่อแอปพลิเคชันกับ SAP API",
+        "ดูแลแก้ไขปัญหาของแอปพลิเคชันหลัง Go-Live"
       ]
     },
     {
-      "role": "นักศึกษาฝึกงาน",
-      "company": "ชื่อบริษัท",
-      "start": "2023",
-      "end": "2023",
-      "points": ["รายละเอียดงานที่ได้ทำระหว่างฝึกงาน"]
+      "role": "QC Office",
+      "company": "Taiwan Metal (Thailand)",
+      "start": "ม.ค. 2026",
+      "end": "มี.ค. 2026",
+      "points": [
+        "ตรวจสอบเอกสารด้านคุณภาพและอัปเดตข้อมูลที่เกี่ยวข้อง",
+        "สนับสนุนงานประจำวันของสำนักงาน QC",
+        "ทำงานร่วมกับทีมในงานประจำวัน"
+      ]
+    },
+    {
+      "role": "Full Stack Programmer Intern",
+      "company": "IDC Premier Publishing",
+      "start": "พ.ย. 2024",
+      "end": "มี.ค. 2025",
+      "points": [
+        "ร่วมกับนักศึกษาฝึกงานคนอื่นพัฒนาระบบจัดการงานภายในองค์กร",
+        "ช่วยเก็บความต้องการ ออกแบบหน้าจอ และพัฒนาแอปพลิเคชัน",
+        "ใช้ PHP (Yii2 Framework) และ MySQL",
+        "ใช้ Figma ในการออกแบบหน้าจอ"
+      ]
     }
   ],
   "education": [
     {
-      "degree": "ปริญญาตรี สาขา...",
-      "school": "ชื่อมหาวิทยาลัย",
-      "start": "2020",
-      "end": "2024",
-      "detail": "เกรดเฉลี่ย 3.xx"
+      "degree": "วิศวกรรมศาสตรบัณฑิต สาขาวิศวกรรมคอมพิวเตอร์",
+      "school": "มหาวิทยาลัยเกษตรศาสตร์ วิทยาเขตศรีราชา",
+      "start": "",
+      "end": "2025",
+      "detail": ""
     }
   ],
   "skills": [
-    { "group": "ภาษาโปรแกรม", "items": ["JavaScript", "TypeScript", "Python"] },
-    { "group": "เครื่องมือ / Framework", "items": ["React", "Astro", "Git", "Figma"] },
-    { "group": "ทักษะอื่น ๆ", "items": ["การทำงานเป็นทีม", "การสื่อสาร", "ภาษาอังกฤษ"] }
+    { "group": "วิเคราะห์ระบบและทดสอบ", "items": ["Functional Specification", "System Documentation", "UAT Documentation", "Business Simulation (BizSim)", "Test Case", "System Testing", "Requirement Review & Coordination", "Application Issue Investigation"] },
+    { "group": "การเขียนโปรแกรม", "items": ["C#", "ASP.NET Core", ".NET", "PHP (Yii2)", "Python", "JavaScript"] },
+    { "group": "ฐานข้อมูล", "items": ["Microsoft SQL Server", "MySQL", "SQL Query", "Stored Procedures"] },
+    { "group": "การเชื่อมต่อระบบและเครื่องมือ", "items": ["API Development", "SAP API Integration", "Active Directory Authentication", "SSMS", "Visual Studio", "VS Code", "Figma", "GitLab"] }
   ],
   "projects": [
     {
-      "name": "ชื่อโปรเจกต์ 1",
-      "description": "อธิบายสั้น ๆ ว่าโปรเจกต์ทำอะไร แก้ปัญหาอะไร และคุณมีส่วนร่วมตรงไหน",
-      "tech": ["Astro", "Tailwind"],
+      "name": "Smart Nutri – Food Ordering System",
+      "description": "Main Developer ที่ Bangkok Air Catering พัฒนาแอปพลิเคชันด้วย C# และ ASP.NET Core เชื่อมต่อ SAP API เพื่อรับข้อมูลคำสั่งอาหาร และส่งข้อมูลการทำอาหารเสร็จกลับไปยัง SAP รวมถึงทดสอบและแก้ไขปัญหาหลัง Go-Live",
+      "tech": ["C#", "ASP.NET Core", "SAP API", "SQL Server"],
       "image": "",
-      "code": "https://github.com/",
+      "code": "",
       "demo": ""
     },
     {
-      "name": "ชื่อโปรเจกต์ 2",
-      "description": "อธิบายสั้น ๆ ว่าโปรเจกต์ทำอะไร",
-      "tech": ["Python"],
+      "name": "Data Reconciliation – Web Application",
+      "description": "Developer ที่ Bangkok Air Catering พัฒนาเว็บแอปพลิเคชันสำหรับตรวจสอบและกระทบยอดข้อมูล ดูแลทั้งการพัฒนาและการจัดการข้อมูล",
+      "tech": ["C#", "ASP.NET Core", "SQL Server"],
+      "image": "",
+      "code": "",
+      "demo": ""
+    },
+    {
+      "name": "UMD365BC Management – Internal Web Application",
+      "description": "Developer ที่ Bangkok Air Catering พัฒนาเว็บแอปพลิเคชันภายในให้พนักงานเข้าถึงข้อมูลบัญชีที่ใช้ร่วมกันของแต่ละแผนก โดยล็อกอินผ่าน Active Directory",
+      "tech": ["C#", "ASP.NET Core", "Active Directory"],
+      "image": "",
+      "code": "",
+      "demo": ""
+    },
+    {
+      "name": "Task Management System",
+      "description": "Full Stack Programmer Intern ที่ IDC Premier Publishing ร่วมกับนักศึกษาฝึกงานเก็บความต้องการ ออกแบบหน้าจอใน Figma และพัฒนาระบบจัดการงานภายในองค์กร",
+      "tech": ["PHP", "Yii2", "MySQL", "Figma"],
       "image": "",
       "code": "",
       "demo": ""
     }
   ],
-  "certificates": [
-    { "name": "ชื่อใบรับรอง", "issuer": "ผู้ออกใบรับรอง", "year": "2024" }
-  ],
+  "certificates": [],
   "contact": {
-    "email": "you@example.com",
+    "email": "nitharee.pu@gmail.com",
     "phone": "",
-    "linkedin": "https://www.linkedin.com/in/",
-    "github": "https://github.com/",
+    "linkedin": "",
+    "github": "",
     "website": ""
   }
 }
