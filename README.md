@@ -16,6 +16,19 @@
 
 ช่องไหนเว้นว่าง (`""`) จะถูกซ่อนบนเว็บ
 
+## แก้ Skills / Projects ผ่านหน้าเว็บ (`/admin`)
+เปิด https://ffanthr.github.io/admin เพื่อเพิ่ม/ลบ/แก้ไข/เรียงลำดับ Skills และ Projects และอัปโหลดรูปผลงานได้ (หน้านี้ไม่มีในเมนู และตั้งไว้ไม่ให้ search engine เก็บ)
+
+1. สร้าง token ที่ [Fine-grained tokens](https://github.com/settings/personal-access-tokens/new)
+   - Repository access: **Only select repositories** → `ffanthr.github.io`
+   - Repository permissions › **Contents: Read and write**
+2. วาง token ในหน้า admin → **โหลดข้อมูล** → แก้ไข → **บันทึก**
+3. ระบบจะ commit ไฟล์ข้อมูลเข้า repo แล้ว deploy เอง เว็บอัปเดตใน 1–2 นาที
+
+คนอื่นเปิดหน้า `/admin` ได้ แต่บันทึกไม่ได้ เพราะไม่มี token ของคุณ
+
+> ⚠️ หลังแก้ผ่าน `/admin` ไฟล์ใน repo จะใหม่กว่าในเครื่อง ก่อนแก้โค้ดในเครื่องให้รัน `git pull` ก่อนทุกครั้ง
+
 ## รันบนเครื่อง
 ```bash
 npm install

@@ -1,0 +1,363 @@
+---
+import '../styles/global.css';
+// หน้าแก้ไข Skill / Project — บันทึกโดย commit ไฟล์ข้อมูลกลับเข้า GitHub repo
+// ตั้งค่า repo ที่นี่ (ถ้าเปลี่ยนชื่อผู้ใช้หรือชื่อ repo)
+const config = {
+  owner: 'ffanthr',
+  repo: 'ffanthr.github.io',
+  branch: 'main',
+  files: { en: 'src/data/resume.en.json', th: 'src/data/resume.th.json' },
+  imageDir: 'public/projects',
+};
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Resume Admin</title>
+    <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}favicon.svg`} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  </head>
+  <body class="min-h-screen bg-slate-100 text-slate-800 antialiased">
+    <div id="admin" data-config={JSON.stringify(config)} class="mx-auto max-w-4xl px-4 py-8">
+      <header class="mb-6 flex flex-wrap items-center justify-between gap-3">
+        <div>
+          <h1 class="text-2xl font-bold text-slate-900">Resume Admin</h1>
+          <p class="text-sm text-slate-500">แก้ไข Skills และ Projects · บันทึกแล้วเว็บจะอัปเดตใน 1–2 นาที</p>
+        </div>
+        <a href={import.meta.env.BASE_URL} class="text-sm font-semibold text-brand-600 hover:underline">← กลับไปหน้าเว็บ</a>
+      </header>
+
+      <!-- Token -->
+      <section class="mb-6 rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+        <label for="token" class="mb-1 block text-sm font-semibold">GitHub token</label>
+        <div class="flex flex-wrap gap-2">
+          <input id="token" type="password" autocomplete="off" placeholder="github_pat_..." class="min-w-0 flex-1 rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-brand-500 focus:outline-none" />
+          <button id="load" type="button" class="rounded-lg bg-brand-600 px-4 py-2 text-sm font-semibold text-white hover:bg-brand-700">โหลดข้อมูล</button>
+        </div>
+        <label class="mt-2 flex items-center gap-2 text-sm text-slate-600">
+          <input id="remember" type="checkbox" class="h-4 w-4" /> จำ token ไว้ในเบราว์เซอร์นี้ (ใช้เฉพาะเครื่องส่วนตัว)
+        </label>
+        <details class="mt-3 text-sm text-slate-600">
+          <summary class="cursor-pointer font-medium text-slate-700">วิธีสร้าง token</summary>
+          <ol class="mt-2 list-decimal space-y-1 pl-5">
+            <li>เปิด <a class="text-brand-600 underline" href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">github.com › Settings › Fine-grained tokens › Generate new token</a></li>
+            <li>Repository access: <b>Only select repositories</b> → เลือก <code>{config.repo}</code></li>
+            <li>Permissions › Repository permissions › <b>Contents: Read and write</b></li>
+            <li>กด Generate แล้วคัดลอก token มาวางช่องด้านบน</li>
+          </ol>
+          <p class="mt-2">token จะถูกส่งไปที่ api.github.com เท่านั้น อย่าแชร์ token ให้ผู้อื่น</p>
+        </details>
+      </section>
+
+      <div id="status" role="status" class="mb-6 hidden rounded-lg px-4 py-3 text-sm"></div>
+
+      <div id="editor" class="hidden">
+        <!-- Language tabs + save -->
+        <div class="sticky top-0 z-10 -mx-4 mb-6 flex flex-wrap items-center justify-between gap-3 bg-slate-100/95 px-4 py-3 backdrop-blur">
+          <div class="inline-flex rounded-lg border border-slate-300 bg-white p-1 text-sm font-semibold">
+            <button type="button" data-lang="en" class="lang-tab rounded-md px-4 py-1.5">English</button>
+            <button type="button" data-lang="th" class="lang-tab rounded-md px-4 py-1.5">ไทย</button>
+          </div>
+          <div class="flex items-center gap-3">
+            <span id="dirty" class="hidden text-sm font-medium text-amber-600">● มีการแก้ไขที่ยังไม่บันทึก</span>
+            <button id="save" type="button" class="rounded-lg bg-emerald-600 px-5 py-2 text-sm font-semibold text-white hover:bg-emerald-700 disabled:cursor-not-allowed disabled:opacity-50">บันทึก</button>
+          </div>
+        </div>
+        <p class="-mt-3 mb-6 text-sm text-slate-500">ภาษาอังกฤษและภาษาไทยแก้แยกกัน ถ้าเพิ่มรายการในภาษาหนึ่ง อย่าลืมเพิ่มในอีกภาษาด้วย</p>
+
+        <section class="mb-10">
+          <div class="mb-3 flex items-center justify-between">
+            <h2 class="text-xl font-bold text-slate-900">Skills</h2>
+            <button id="add-skill" type="button" class="rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-sm font-semibold hover:bg-slate-50">+ เพิ่มกลุ่มทักษะ</button>
+          </div>
+          <div id="skills" class="space-y-3"></div>
+        </section>
+
+        <section class="mb-10">
+          <div class="mb-3 flex items-center justify-between">
+            <h2 class="text-xl font-bold text-slate-900">Projects</h2>
+            <button id="add-project" type="button" class="rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-sm font-semibold hover:bg-slate-50">+ เพิ่มผลงาน</button>
+          </div>
+          <div id="projects" class="space-y-3"></div>
+        </section>
+      </div>
+    </div>
+
+    <script>
+      type Lang = 'en' | 'th';
+      interface Skill { group: string; items: string[] }
+      interface Project { name: string; description: string; tech: string[]; image?: string; code?: string; demo?: string }
+      interface Doc { skills: Skill[]; projects: Project[]; [k: string]: unknown }
+      interface Config { owner: string; repo: string; branch: string; files: Record<Lang, string>; imageDir: string }
+
+      const root = document.getElementById('admin')!;
+      const cfg: Config = JSON.parse(root.dataset.config!);
+      const $ = <T extends HTMLElement>(id: string) => document.getElementById(id) as T;
+      const tokenInput = $<HTMLInputElement>('token');
+      const remember = $<HTMLInputElement>('remember');
+      const statusEl = $('status');
+      const TOKEN_KEY = 'resume-admin-token';
+
+      const state: { lang: Lang; docs: Partial<Record<Lang, Doc>>; sha: Partial<Record<Lang, string>>; dirty: Set<Lang> } = {
+        lang: 'en', docs: {}, sha: {}, dirty: new Set(),
+      };
+
+      // ---------- helpers ----------
+      try {
+        const saved = localStorage.getItem(TOKEN_KEY);
+        if (saved) { tokenInput.value = saved; remember.checked = true; }
+      } catch {}
+
+      function showStatus(msg: string, kind: 'info' | 'ok' | 'error' = 'info', html = false) {
+        const colors = { info: 'bg-sky-50 text-sky-800 border border-sky-200', ok: 'bg-emerald-50 text-emerald-800 border border-emerald-200', error: 'bg-red-50 text-red-800 border border-red-200' };
+        statusEl.className = `mb-6 rounded-lg px-4 py-3 text-sm ${colors[kind]}`;
+        if (html) statusEl.innerHTML = msg; else statusEl.textContent = msg;
+      }
+
+      function b64ToText(b64: string) {
+        const bin = atob(b64.replace(/\n/g, ''));
+        return new TextDecoder().decode(Uint8Array.from(bin, (c) => c.charCodeAt(0)));
+      }
+      function bytesToB64(bytes: Uint8Array) {
+        let bin = '';
+        for (let i = 0; i < bytes.length; i += 0x8000) bin += String.fromCharCode(...bytes.subarray(i, i + 0x8000));
+        return btoa(bin);
+      }
+
+      async function gh(path: string, init: RequestInit = {}) {
+        const token = tokenInput.value.trim();
+        const headers: Record<string, string> = { Accept: 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28' };
+        if (token) headers.Authorization = `Bearer ${token}`;
+        const res = await fetch(`https://api.github.com/repos/${cfg.owner}/${cfg.repo}/contents/${path}`, { cache: 'no-store', ...init, headers });
+        if (!res.ok && res.status !== 404) {
+          const body = await res.json().catch(() => ({}));
+          const hint = res.status === 401 ? ' (token ไม่ถูกต้องหรือหมดอายุ)' : res.status === 403 ? ' (token ไม่มีสิทธิ์ Contents: Read and write สำหรับ repo นี้)' : res.status === 409 ? ' (ไฟล์ถูกแก้จากที่อื่น ให้กดโหลดข้อมูลใหม่)' : '';
+          throw new Error(`GitHub ${res.status}: ${body.message ?? res.statusText}${hint}`);
+        }
+        return res;
+      }
+
+      const splitList = (s: string) => s.split(',').map((x) => x.trim()).filter(Boolean);
+      const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
+
+      function markDirty() {
+        state.dirty.add(state.lang);
+        $('dirty').classList.remove('hidden');
+      }
+
+      // ---------- load ----------
+      async function load() {
+        if (state.dirty.size && !confirm('มีการแก้ไขที่ยังไม่บันทึก ต้องการโหลดใหม่และทิ้งการแก้ไขหรือไม่?')) return;
+        persistToken();
+        showStatus('กำลังโหลดข้อมูลจาก GitHub…');
+        try {
+          for (const lang of ['en', 'th'] as Lang[]) {
+            const res = await gh(`${cfg.files[lang]}?ref=${cfg.branch}`);
+            if (res.status === 404) throw new Error(`ไม่พบไฟล์ ${cfg.files[lang]} ใน repo`);
+            const json = await res.json();
+            state.docs[lang] = JSON.parse(b64ToText(json.content));
+            state.sha[lang] = json.sha;
+          }
+          state.dirty.clear();
+          $('dirty').classList.add('hidden');
+          $('editor').classList.remove('hidden');
+          render();
+          showStatus(tokenInput.value.trim() ? 'โหลดข้อมูลแล้ว แก้ไขได้เลย' : 'โหลดข้อมูลแล้ว (ยังไม่ได้ใส่ token จึงดูได้อย่างเดียว บันทึกไม่ได้)', 'ok');
+        } catch (e) {
+          showStatus(`โหลดไม่สำเร็จ: ${(e as Error).message}`, 'error');
+        }
+      }
+
+      function persistToken() {
+        try {
+          if (remember.checked && tokenInput.value.trim()) localStorage.setItem(TOKEN_KEY, tokenInput.value.trim());
+          else localStorage.removeItem(TOKEN_KEY);
+        } catch {}
+      }
+
+      // ---------- render ----------
+      const inputCls = 'w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-brand-500 focus:outline-none';
+      const btnCls = 'rounded-md border border-slate-300 bg-white px-2 py-1 text-xs font-semibold hover:bg-slate-50 disabled:opacity-30';
+
+      function controls(kind: string, i: number, len: number) {
+        return `<div class="flex shrink-0 gap-1">
+          <button type="button" class="${btnCls}" data-act="up" data-kind="${kind}" data-i="${i}" ${i === 0 ? 'disabled' : ''} aria-label="Move up">↑</button>
+          <button type="button" class="${btnCls}" data-act="down" data-kind="${kind}" data-i="${i}" ${i === len - 1 ? 'disabled' : ''} aria-label="Move down">↓</button>
+          <button type="button" class="${btnCls} text-red-600" data-act="del" data-kind="${kind}" data-i="${i}">ลบ</button>
+        </div>`;
+      }
+
+      function field(label: string, kind: string, i: number, key: string, value: string, opts: { textarea?: boolean; placeholder?: string } = {}) {
+        const attrs = `data-kind="${kind}" data-i="${i}" data-key="${key}" placeholder="${esc(opts.placeholder ?? '')}" class="${inputCls}"`;
+        return `<label class="block"><span class="mb-1 block text-xs font-semibold text-slate-500">${label}</span>${
+          opts.textarea ? `<textarea rows="3" ${attrs}>${esc(value)}</textarea>` : `<input type="text" value="${esc(value)}" ${attrs} />`
+        }</label>`;
+      }
+
+      function render() {
+        const doc = state.docs[state.lang]!;
+        document.querySelectorAll<HTMLButtonElement>('.lang-tab').forEach((b) => {
+          const on = b.dataset.lang === state.lang;
+          b.className = `lang-tab rounded-md px-4 py-1.5 ${on ? 'bg-brand-600 text-white' : 'text-slate-600 hover:bg-slate-100'}`;
+        });
+
+        $('skills').innerHTML = doc.skills.map((s, i) => `
+          <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+            <div class="mb-3 flex items-start justify-between gap-3">
+              <span class="pt-1 text-sm font-semibold text-slate-400">#${i + 1}</span>
+              ${controls('skills', i, doc.skills.length)}
+            </div>
+            <div class="space-y-3">
+              ${field('ชื่อกลุ่ม', 'skills', i, 'group', s.group, { placeholder: 'เช่น Programming' })}
+              ${field('ทักษะ (คั่นด้วยเครื่องหมาย ,)', 'skills', i, 'items', s.items.join(', '), { textarea: true, placeholder: 'C#, ASP.NET Core, SQL' })}
+            </div>
+          </div>`).join('') || '<p class="text-sm text-slate-500">ยังไม่มีกลุ่มทักษะ</p>';
+
+        $('projects').innerHTML = doc.projects.map((p, i) => `
+          <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+            <div class="mb-3 flex items-start justify-between gap-3">
+              <span class="pt-1 text-sm font-semibold text-slate-400">#${i + 1}</span>
+              ${controls('projects', i, doc.projects.length)}
+            </div>
+            <div class="grid gap-3 sm:grid-cols-2">
+              <div class="sm:col-span-2">${field('ชื่อผลงาน', 'projects', i, 'name', p.name)}</div>
+              <div class="sm:col-span-2">${field('คำอธิบาย', 'projects', i, 'description', p.description, { textarea: true })}</div>
+              <div class="sm:col-span-2">${field('เทคโนโลยี (คั่นด้วย ,)', 'projects', i, 'tech', p.tech.join(', '), { placeholder: 'C#, ASP.NET Core' })}</div>
+              ${field('Link โค้ด (ไม่บังคับ)', 'projects', i, 'code', p.code ?? '', { placeholder: 'https://github.com/...' })}
+              ${field('Link ตัวอย่าง (ไม่บังคับ)', 'projects', i, 'demo', p.demo ?? '', { placeholder: 'https://...' })}
+              <div class="sm:col-span-2">
+                <span class="mb-1 block text-xs font-semibold text-slate-500">รูปภาพ (ไม่บังคับ)</span>
+                <div class="flex flex-wrap items-center gap-3">
+                  ${p.image ? `<img src="${import.meta.env.BASE_URL}${esc(p.image)}" alt="" class="h-14 w-24 rounded border border-slate-200 object-cover" onerror="this.style.display='none'" />` : ''}
+                  <input type="text" value="${esc(p.image ?? '')}" data-kind="projects" data-i="${i}" data-key="image" placeholder="projects/xxx.png" class="${inputCls} max-w-xs" />
+                  <label class="${btnCls} cursor-pointer px-3 py-2">อัปโหลดรูป
+                    <input type="file" accept="image/png,image/jpeg,image/webp" data-upload="${i}" class="hidden" />
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>`).join('') || '<p class="text-sm text-slate-500">ยังไม่มีผลงาน</p>';
+      }
+
+      // ---------- edit events ----------
+      $('editor').addEventListener('input', (e) => {
+        const el = e.target as HTMLInputElement;
+        const { kind, i, key } = el.dataset;
+        if (!kind || !key) return;
+        const doc = state.docs[state.lang]!;
+        const item = (doc[kind as 'skills' | 'projects'] as unknown as Record<string, unknown>[])[Number(i)];
+        item[key] = key === 'items' || key === 'tech' ? splitList(el.value) : el.value;
+        markDirty();
+      });
+
+      $('editor').addEventListener('click', (e) => {
+        const btn = (e.target as HTMLElement).closest<HTMLButtonElement>('button[data-act]');
+        if (btn) {
+          const list = state.docs[state.lang]![btn.dataset.kind as 'skills' | 'projects'] as unknown[];
+          const i = Number(btn.dataset.i);
+          if (btn.dataset.act === 'del') {
+            if (!confirm('ลบรายการนี้?')) return;
+            list.splice(i, 1);
+          } else {
+            const j = btn.dataset.act === 'up' ? i - 1 : i + 1;
+            [list[i], list[j]] = [list[j], list[i]];
+          }
+          markDirty();
+          render();
+          return;
+        }
+        const tab = (e.target as HTMLElement).closest<HTMLButtonElement>('.lang-tab');
+        if (tab) { state.lang = tab.dataset.lang as Lang; render(); }
+      });
+
+      $('add-skill').addEventListener('click', () => {
+        state.docs[state.lang]!.skills.push({ group: '', items: [] });
+        markDirty(); render();
+        ($('skills').lastElementChild?.querySelector('input') as HTMLInputElement | null)?.focus();
+      });
+      $('add-project').addEventListener('click', () => {
+        state.docs[state.lang]!.projects.push({ name: '', description: '', tech: [], image: '', code: '', demo: '' });
+        markDirty(); render();
+        ($('projects').lastElementChild?.querySelector('input') as HTMLInputElement | null)?.focus();
+      });
+
+      // ---------- image upload ----------
+      $('editor').addEventListener('change', async (e) => {
+        const input = e.target as HTMLInputElement;
+        if (!input.dataset.upload) return;
+        const file = input.files?.[0];
+        if (!file) return;
+        if (!tokenInput.value.trim()) { showStatus('ต้องใส่ GitHub token ก่อนอัปโหลดรูป', 'error'); return; }
+        if (file.size > 2 * 1024 * 1024) { showStatus('รูปใหญ่เกิน 2 MB กรุณาย่อรูปก่อน', 'error'); return; }
+        const i = Number(input.dataset.upload);
+        const safe = file.name.toLowerCase().replace(/[^a-z0-9.\-_]+/g, '-').replace(/-+/g, '-');
+        const name = `${Date.now().toString(36)}-${safe}`;
+        showStatus(`กำลังอัปโหลด ${file.name}…`);
+        try {
+          const content = bytesToB64(new Uint8Array(await file.arrayBuffer()));
+          await gh(`${cfg.imageDir}/${name}`, {
+            method: 'PUT',
+            body: JSON.stringify({ message: `Upload project image ${name}`, content, branch: cfg.branch }),
+          });
+          const rel = `${cfg.imageDir.replace(/^public\//, '')}/${name}`;
+          state.docs[state.lang]!.projects[i].image = rel;
+          // ใส่รูปเดียวกันให้ผลงานลำดับเดียวกันในอีกภาษา ถ้ายังไม่มีรูป
+          const other: Lang = state.lang === 'en' ? 'th' : 'en';
+          const op = state.docs[other]?.projects[i];
+          if (op && !op.image) { op.image = rel; state.dirty.add(other); }
+          markDirty(); render();
+          showStatus('อัปโหลดรูปแล้ว กด "บันทึก" เพื่อใช้รูปนี้บนเว็บ (รูปจะแสดงหลังเว็บอัปเดตเสร็จ)', 'ok');
+        } catch (err) {
+          showStatus(`อัปโหลดไม่สำเร็จ: ${(err as Error).message}`, 'error');
+        }
+      });
+
+      // ---------- save ----------
+      async function save() {
+        if (!tokenInput.value.trim()) { showStatus('ต้องใส่ GitHub token ก่อนบันทึก', 'error'); return; }
+        if (!state.dirty.size) { showStatus('ไม่มีอะไรเปลี่ยนแปลง', 'info'); return; }
+        for (const lang of state.dirty) {
+          const d = state.docs[lang]!;
+          if (d.skills.some((s) => !s.group.trim()) || d.projects.some((p) => !p.name.trim())) {
+            state.lang = lang; render();
+            showStatus(`กรุณากรอกชื่อกลุ่มทักษะ/ชื่อผลงานให้ครบ (${lang === 'en' ? 'English' : 'ไทย'})`, 'error');
+            return;
+          }
+        }
+        persistToken();
+        const btn = $<HTMLButtonElement>('save');
+        btn.disabled = true;
+        showStatus('กำลังบันทึก…');
+        try {
+          for (const lang of [...state.dirty]) {
+            const content = bytesToB64(new TextEncoder().encode(JSON.stringify(state.docs[lang], null, 2) + '\n'));
+            const res = await gh(cfg.files[lang], {
+              method: 'PUT',
+              body: JSON.stringify({ message: `Update skills/projects (${lang}) via admin`, content, sha: state.sha[lang], branch: cfg.branch }),
+            });
+            state.sha[lang] = (await res.json()).content.sha;
+            state.dirty.delete(lang);
+          }
+          $('dirty').classList.add('hidden');
+          const actions = `https://github.com/${cfg.owner}/${cfg.repo}/actions`;
+          showStatus(`บันทึกแล้ว ✓ เว็บจะอัปเดตใน 1–2 นาที · <a class="underline" href="${actions}" target="_blank" rel="noopener">ดูสถานะ deploy</a>`, 'ok', true);
+        } catch (e) {
+          showStatus(`บันทึกไม่สำเร็จ: ${(e as Error).message}`, 'error');
+        } finally {
+          btn.disabled = false;
+        }
+      }
+
+      $('load').addEventListener('click', load);
+      $('save').addEventListener('click', save);
+      tokenInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') load(); });
+      remember.addEventListener('change', persistToken);
+      window.addEventListener('beforeunload', (e) => { if (state.dirty.size) e.preventDefault(); });
+    </script>
+  </body>
+</html>
