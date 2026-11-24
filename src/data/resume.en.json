@@ -80,16 +80,62 @@
     }
   ],
   "skills": [
-    { "group": "System Analysis & Testing", "items": ["Functional Specification", "System Documentation", "UAT Documentation", "Business Simulation (BizSim)", "Test Case", "System Testing", "Requirement Review & Coordination", "Application Issue Investigation"] },
-    { "group": "Programming", "items": ["C#", "ASP.NET Core", ".NET", "PHP (Yii2)", "Python", "JavaScript"] },
-    { "group": "Database", "items": ["Microsoft SQL Server", "MySQL", "SQL Query", "Stored Procedures"] },
-    { "group": "Integration & Tools", "items": ["API Development", "SAP API Integration", "Active Directory Authentication", "SSMS", "Visual Studio", "VS Code", "Figma", "GitLab"] }
+    {
+      "group": "System Analysis & Testing",
+      "items": [
+        "Functional Specification",
+        "System Documentation",
+        "UAT Documentation",
+        "Business Simulation (BizSim)",
+        "Test Case",
+        "System Testing",
+        "Requirement Review & Coordination",
+        "Application Issue Investigation"
+      ]
+    },
+    {
+      "group": "Programming",
+      "items": [
+        "C#",
+        "ASP.NET Core",
+        ".NET",
+        "PHP (Yii2)",
+        "Python",
+        "JavaScript"
+      ]
+    },
+    {
+      "group": "Database",
+      "items": [
+        "Microsoft SQL Server",
+        "MySQL",
+        "SQL Query",
+        "Stored Procedures"
+      ]
+    },
+    {
+      "group": "Integration & Tools",
+      "items": [
+        "API Development",
+        "Active Directory Authentication",
+        "SSMS",
+        "Visual Studio",
+        "VS Code",
+        "Figma",
+        "GitLab"
+      ]
+    }
   ],
   "projects": [
     {
       "name": "Smart Nutri – Food Ordering System",
       "description": "Main Developer at Bangkok Air Catering. Built the application with C# and ASP.NET Core, connected it to SAP APIs to receive food order data and send food completion information back to SAP, then tested it and fixed problems after Go-Live.",
-      "tech": ["C#", "ASP.NET Core", "SAP API", "SQL Server"],
+      "tech": [
+        "C#",
+        "ASP.NET Core",
+        "SAP API",
+        "SQL Server"
+      ],
       "image": "",
       "code": "",
       "demo": ""
@@ -97,7 +143,11 @@
     {
       "name": "Data Reconciliation – Web Application",
       "description": "Developer at Bangkok Air Catering. A web application for data checking and reconciliation, covering application development and data handling.",
-      "tech": ["C#", "ASP.NET Core", "SQL Server"],
+      "tech": [
+        "C#",
+        "ASP.NET Core",
+        "SQL Server"
+      ],
       "image": "",
       "code": "",
       "demo": ""
@@ -105,7 +155,11 @@
     {
       "name": "UMD365BC Management – Internal Web Application",
       "description": "Developer at Bangkok Air Catering. An internal web application that lets employees access shared account information for their departments, with Active Directory login.",
-      "tech": ["C#", "ASP.NET Core", "Active Directory"],
+      "tech": [
+        "C#",
+        "ASP.NET Core",
+        "Active Directory"
+      ],
       "image": "",
       "code": "",
       "demo": ""
@@ -113,7 +167,12 @@
     {
       "name": "Task Management System",
       "description": "Full Stack Programmer Intern at IDC Premier Publishing. Worked with other interns to collect requirements, design screens in Figma, and develop an internal task management system.",
-      "tech": ["PHP", "Yii2", "MySQL", "Figma"],
+      "tech": [
+        "PHP",
+        "Yii2",
+        "MySQL",
+        "Figma"
+      ],
       "image": "",
       "code": "",
       "demo": ""
