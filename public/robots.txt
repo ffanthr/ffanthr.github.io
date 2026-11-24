@@ -1,0 +1,5 @@
+# หน้าเว็บใช้ <meta name="robots" content="noindex"> ซึ่ง bot ต้องเข้ามาอ่านได้ จึงไม่ block หน้า HTML
+# ไฟล์ PDF ใส่ meta ไม่ได้ จึง block ไม่ให้ bot เข้ามาอ่าน
+User-agent: *
+Disallow: /resume.pdf
+Disallow: /projects/
